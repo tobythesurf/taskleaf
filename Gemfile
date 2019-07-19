@@ -9,7 +9,6 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
-gem 'jbuilder', '~> 2.5'
 gem 'bcrypt', '~> 3.1.13'
 gem 'bootsnap', '>= 1.1.0', require: false
 
@@ -19,6 +18,7 @@ gem 'html2slim'
 gem 'bootstrap'
 gem 'rails_autolink'
 gem 'ransack'
+gem 'enum_help'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

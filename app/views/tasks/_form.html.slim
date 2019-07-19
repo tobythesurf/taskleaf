@@ -13,4 +13,7 @@
   .form-group
     = f.label :deadline
     = f.date_field :deadline, class: 'form-control'
+  .form-group
+    = f.label :status
+    = f.select :status, Task.statuses.keys.map{|k| [I18n.t("enums.task.status.#{k}"), k]}, {}, class: 'form-control'
   = f.submit nil, class: 'btn btn-primary'
