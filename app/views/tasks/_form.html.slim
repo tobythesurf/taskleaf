@@ -15,8 +15,8 @@
     = f.date_field :deadline, class: 'form-control'
   .form-group
     = f.label :status
-    = f.select :status, Task.statuses.keys.map{|k| [I18n.t("enums.task.status.#{k}"), k]}, {}, class: 'form-control'
+    = f.select :status, Task.statuses_i18n.invert, {}, class: 'form-control'
   .form-group
     = f.label :priority
-    = f.select :priority, Task.priorities.keys.map{|k| [I18n.t("enums.task.priority.#{k}"), k]}, {}, class: 'form-control'  
+    = f.select :priority, Task.priorities_i18n.invert, {}, class: 'form-control'  
   = f.submit nil, class: 'btn btn-primary'

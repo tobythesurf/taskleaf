@@ -3,7 +3,7 @@ class TasksController < ApplicationController
 
   def index
     @q = current_user.tasks.ransack(params[:q])
-    @tasks = @q.result(distinct: true).recent
+    @tasks = @q.result(distinct: true).page(params[:page])
   end
 
   def show
@@ -27,8 +27,11 @@ class TasksController < ApplicationController
   end
 
   def update
-    @task.update!(task_params)
-    redirect_to tasks_url, notice: "タスク「#{@task.name}」を更新しました。"
+    if @task.update(task_params)
+      redirect_to tasks_url, notice: "タスク「#{@task.name}」を更新しました。"
+    else
+      redirect_to tasks_url, notice: "タスク「#{@task.name}」の更新に失敗しました。"
+    end
   end
 
   def destroy
