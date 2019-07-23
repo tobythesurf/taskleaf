@@ -20,12 +20,12 @@ h1 タスク一覧
     .col-sm-2
       = f.label :status_eq, '状態', class: 'col-form-label'
     .col-sm-10
-      = f.select :status_eq, Task.statuses_i18n.invert, class: 'form-control'
+      = f.select :status_eq, Task.statuses_i18n.invert, {include_blank: true}, class: 'form-control'
   .form-group.row
     .col-sm-2
       = f.label :priority_eq, '優先度', class: 'col-form-label'
     .col-sm-10
-      = f.select :priority_eq, Task.priorities_i18n.invert, class: 'form-control'
+      = f.select :priority_eq, Task.priorities_i18n.invert, {include_blank: true}, class: 'form-control'
   .form-group
     = f.submit class: 'btn btn-outline-primary'
 
