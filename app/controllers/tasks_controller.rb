@@ -4,6 +4,10 @@ class TasksController < ApplicationController
   def index
     @q = current_user.tasks.ransack(params[:q])
     @tasks = @q.result(distinct: true).page(params[:page])
+
+    if params[:tag_name]
+      @tasks = @tasks.tagged_with("#{params[:tag_name]}")
+    end
   end
 
   def show
@@ -42,7 +46,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:name, :description, :deadline, :status, :priority)
+    params.require(:task).permit(:name, :description, :deadline, :status, :priority ,:tag_list)
   end
 
   def set_task

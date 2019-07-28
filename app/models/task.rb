@@ -2,6 +2,8 @@ class Task < ApplicationRecord
   enum status: { not_started_yet: 0, start: 1, completion: 2}
   enum priority: { low: 0, middle: 1, high: 2}
 
+  acts_as_taggable
+
   validates :name, presence: true, length: { maximum: 30 }
   validate :validate_name_not_including_comma
   

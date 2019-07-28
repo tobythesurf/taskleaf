@@ -18,5 +18,8 @@
     = f.select :status, Task.statuses_i18n.invert, {}, class: 'form-control'
   .form-group
     = f.label :priority
-    = f.select :priority, Task.priorities_i18n.invert, {}, class: 'form-control'  
+    = f.select :priority, Task.priorities_i18n.invert, {}, class: 'form-control'
+  .form-group 
+    = f.label :tag_list
+    = f.text_field :tag_list, value: @task.tag_list.join(','), class: "form-control"
   = f.submit nil, class: 'btn btn-primary'
