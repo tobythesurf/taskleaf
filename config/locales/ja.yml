@@ -6,6 +6,10 @@ ja:
         not_started_yet: 未着手
         start: 着手
         completion: 完了
+      priority:
+        low: 低
+        middle: 中
+        high: 高
   activerecord:
     errors:
       messages:
@@ -24,6 +28,8 @@ ja:
         updated_at: 更新日時
         deadline: 終了期限
         status: 状態
+        priority: 優先度
+        tag_list: タグ
       user:
         name: 名前
         email: メールアドレス

@@ -1,13 +1,8 @@
 class Task < ApplicationRecord
   enum status: { not_started_yet: 0, start: 1, completion: 2}
+  enum priority: { low: 0, middle: 1, high: 2}
 
-  def self.human_attribute_enum_value(attr_name, value)
-    human_attribute_name("#{attr_name}.#{value}")
-  end
-
-  def human_attribute_enum(attr_name)
-    self.class.human_attribute_enum_value(attr_name, self[attr_name])
-  end  
+  acts_as_taggable
 
   validates :name, presence: true, length: { maximum: 30 }
   validate :validate_name_not_including_comma
@@ -15,6 +10,14 @@ class Task < ApplicationRecord
   belongs_to :user
   
   scope :recent, -> { order(created_at: :desc) }
+
+  def self.ransackable_attributes(auth_object = nil)
+    %w[name created_at deadline status priority]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    []
+  end
   
   private
   

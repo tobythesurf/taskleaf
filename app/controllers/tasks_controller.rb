@@ -3,7 +3,11 @@ class TasksController < ApplicationController
 
   def index
     @q = current_user.tasks.ransack(params[:q])
-    @tasks = @q.result(distinct: true).recent
+    @tasks = @q.result(distinct: true).page(params[:page])
+
+    if params[:tag_name]
+      @tasks = @tasks.tagged_with("#{params[:tag_name]}")
+    end
   end
 
   def show
@@ -27,8 +31,11 @@ class TasksController < ApplicationController
   end
 
   def update
-    @task.update!(task_params)
-    redirect_to tasks_url, notice: "タスク「#{@task.name}」を更新しました。"
+    if @task.update(task_params)
+      redirect_to tasks_url, notice: "タスク「#{@task.name}」を更新しました。"
+    else
+      redirect_to tasks_url, notice: "タスク「#{@task.name}」の更新に失敗しました。"
+    end
   end
 
   def destroy
@@ -39,7 +46,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:name, :description, :deadline, :status)
+    params.require(:task).permit(:name, :description, :deadline, :status, :priority ,:tag_list)
   end
 
   def set_task

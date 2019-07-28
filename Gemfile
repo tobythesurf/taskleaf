@@ -19,6 +19,8 @@ gem 'bootstrap'
 gem 'rails_autolink'
 gem 'ransack'
 gem 'enum_help'
+gem 'kaminari'
+gem 'acts-as-taggable-on'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

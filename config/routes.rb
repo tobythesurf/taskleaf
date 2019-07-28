@@ -9,4 +9,6 @@ Rails.application.routes.draw do
 
   root to: 'tasks#index'
   resources :tasks
+
+  get '*path', to: 'application#render_404'
 end
